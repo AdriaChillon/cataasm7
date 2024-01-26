@@ -40,7 +40,14 @@ class CatImageController extends Controller
      */
     public function store(StoreCatImageRequest $request)
     {
-        //
+        $cat = CatImage::create([
+            '_id' => $request->input('_id'),
+            'mimetype' => $request->input('mimetype'),
+            'size' => $request->input('size'),
+            'tags' => $request->input('tags'),
+        ]);
+
+        return response()->json($cat);
     }
 
     /**

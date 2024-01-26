@@ -19,3 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/cats',[CatImageController::class, 'index']);
+Route::post('/cats',[CatImageController::class, 'store']);
