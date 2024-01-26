@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CatImageController;
 use Illuminate\Support\Facades\Route;
 
 /*
