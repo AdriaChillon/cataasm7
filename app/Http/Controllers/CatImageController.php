@@ -55,7 +55,7 @@ class CatImageController extends Controller
      */
     public function show(CatImage $catImage)
     {
-        //
+        return $catImage;
     }
 
     /**
@@ -71,7 +71,19 @@ class CatImageController extends Controller
      */
     public function update(UpdateCatImageRequest $request, CatImage $catImage)
     {
-        //
+        $catImage->update([
+            '_id' => $request->input('_id'),
+            'mimetype' => $request->input('mimetype'),
+            'size' => $request->input('size'),
+            'tags' => $request->input('tags'),
+        ]);
+        $catImage->_id = $request->input('_id');
+        $catImage->mimetype = $request->input('mimetype');
+        $catImage->size = $request->input('size');
+        $catImage->tags = $request->input('tags');
+        $catImage->save();
+
+        return response()->json($catImage);
     }
 
     /**
@@ -79,6 +91,7 @@ class CatImageController extends Controller
      */
     public function destroy(CatImage $catImage)
     {
-        //
+            $catImage->delete();
+            return response()->json(['success' => true]);
     }
 }
