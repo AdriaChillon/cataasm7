@@ -15,17 +15,26 @@ class CatImageController extends Controller
     public function index(Request $request)
     {
         $tag = $request->input('tags');
-        $offset = $request->input('offset')?? 0;
-        $limit = $request->input('limit')?? 10;
+        $offset = $request->input('offset') ?? 0;
+        $limit = $request->input('limit') ?? 10;
 
 
         $cats = CatImage::select('_id', 'tags')
-                        ->where('tags', 'like', '%'.$tag.'%')
-                        ->offset($offset)
-                        ->take( $limit)
-                        ->get();
+            ->where('tags', 'like', '%' . $tag . '%')
+            ->offset($offset)
+            ->take($limit)
+            ->get();
         return response()->json($cats);
     }
+    // public function gatitos(Request $request)
+    // {
+    //     $tag = $request->input('tags');
+    //     $offset = $request->input('offset') ?? 0;
+    //     $limit = $request->input('limit') ?? 10;
+    //     $cats = file_get_contents('https://localhost:8000/api/cats');
+
+    //     return view('cats.view', ['cats', $cats]);
+    // }
 
     /**
      * Show the form for creating a new resource.
@@ -91,7 +100,7 @@ class CatImageController extends Controller
      */
     public function destroy(CatImage $catImage)
     {
-            $catImage->delete();
-            return response()->json(['success' => true]);
+        $catImage->delete();
+        return response()->json(['success' => true]);
     }
 }
