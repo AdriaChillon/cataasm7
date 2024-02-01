@@ -16,7 +16,7 @@ class CatImageController extends Controller
     {
         $tag = $request->input('tags');
         $offset = $request->input('offset') ?? 0;
-        $limit = $request->input('limit') ?? 10;
+        $limit = $request->input('limit') ?? 50;
 
 
         $cats = CatImage::select('_id', 'tags')
